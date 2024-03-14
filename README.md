@@ -2,7 +2,8 @@
 
 Modelo Entidad Relacion
 
-<img width="460" alt="image" src="https://github.com/juanchoang05/Ingeneo/assets/18738329/c98ce66c-c190-47d5-baec-abe65201b71f">
+<img width="445" alt="image" src="https://github.com/juanchoang05/Ingeneo/assets/18738329/08c3d7ab-a739-4c43-8568-a68251e3e36e">
+
 
 Lenguaje de programacion : JAVA
 

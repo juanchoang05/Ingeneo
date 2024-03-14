@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.catalina.User;
 
 import java.util.Date;
 
@@ -24,6 +25,9 @@ public class DeliveryPlanModel {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_product_id")
     private ProductModel productModel;
+
+    @ManyToOne
+    private UserModel user;
 
     @Column
     private Date registerDate;

@@ -13,11 +13,12 @@ public class DeliveryPlanWrapper {
 
 
     private Long deliveryPlanId;
-    private ProductWrapper productModel;
+    private UserWrapper user;
+    private ProductWrapper product;
     private Date registerDate;
     private Date deliveryDate;
     private Double deliveryPrice;
-    private VehicleWrapper vehicleModel;
+    private VehicleWrapper vehicle;
     private String guideNumber;
 
 }

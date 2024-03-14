@@ -3,9 +3,11 @@ package com.api.deliveryservice.service;
 import com.api.deliveryservice.common.Constant;
 import com.api.deliveryservice.feign.IDelivery;
 import com.api.deliveryservice.feign.IProduct;
+import com.api.deliveryservice.feign.IUser;
 import com.api.deliveryservice.feign.IVehicle;
 import com.api.deliveryservice.model.DeliveryPlanWrapper;
 import com.api.deliveryservice.model.ProductWrapper;
+import com.api.deliveryservice.model.UserWrapper;
 import com.api.deliveryservice.model.VehicleWrapper;
 import com.api.deliveryservice.model.wrapper.MaritimoDeliveryWrapper;
 import com.api.deliveryservice.model.wrapper.TrucksDeliveryWrapper;
@@ -20,7 +22,7 @@ import java.util.regex.Pattern;
 public class DeliveryService {
     IDelivery iDelivery;
     IProduct iproduct;
-
+    IUser iUser;
     IVehicle iVehicle;
 
     public ResponseEntity<String> createTRuckDelivery(TrucksDeliveryWrapper trucksDelivery){
@@ -32,7 +34,7 @@ public class DeliveryService {
                 throw new Exception("No cumple con El formato debe corresponder a 3 letras iniciales y 3 números\n" +
                     "finales)");
 
-
+            UserWrapper userWrapper = iUser.getUserById("prueba");
             ProductWrapper productWrapper = iproduct.getProductById(trucksDelivery.getProduct_type());
             VehicleWrapper vehicleWrapper = iVehicle.getVehicleById(trucksDelivery.getLicensePlate());
 
@@ -43,10 +45,10 @@ public class DeliveryService {
                 deliveryPlan.setDeliveryPrice(trucksDelivery.getDeliveryPrice() - (trucksDelivery.getDeliveryPrice() * Constant.DESCUENTO.P03));
 
             deliveryPlan.setGuideNumber(trucksDelivery.getGuideNumber());
-            deliveryPlan.setProductModel(productWrapper);
-            deliveryPlan.setVehicleModel(vehicleWrapper);
+            deliveryPlan.setProduct(productWrapper);
+            deliveryPlan.setVehicle(vehicleWrapper);
             deliveryPlan.setRegisterDate(trucksDelivery.getRegisterDate());
-
+            deliveryPlan.setUser(userWrapper);
 
             iDelivery.createMaritimoDelivery(deliveryPlan);
 
